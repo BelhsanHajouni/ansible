@@ -8,3 +8,10 @@
       vars:
         host_ip: "{{ hostvars[inventory_hostname]['host_ip'] }}"
         gateway: "{{ hostvars[inventory_hostname]['gateway'] }}"
+    - name: Restart network interface
+      ansible.builtin.service:
+        name: systemd-networkd
+        state: restarted
+        daemon_reload: yes
+
+
