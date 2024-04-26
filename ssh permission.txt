@@ -1,6 +1,0 @@
-/etc/ssh/sshd.config ==> PermitRootLogin yes : it allows me to makes the VMs be able to ssh on each other manually
-************
-to allow the VMs ssh on each other using ansible in addition to password we need the private key so :
- 	- ssh-keygen
-	- the key is store in /root/.ssh/id_rsa
-	- copy the key to the slave VMs : ssh-copy-id root@hostname or ip@
