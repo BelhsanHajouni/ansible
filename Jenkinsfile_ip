@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    tools {
+        ansible 'Ansible'
+    }
+    stages {
+        stage('Git Checkout') {
+            steps {
+                echo 'Pulling ... '
+                git branch: 'main',
+                url: 'https://github.com/jasminemansouri/ansible'
+            }
+        }
+        stage('config IP @') {
+            steps {
+                script {
+                    // Run Ansible playbook for configuring VM IPs
+                    sh 'ansible-playbook -i inventory.ini config.yml'
+                }
+            }
+        }
+       
+    }
+}
