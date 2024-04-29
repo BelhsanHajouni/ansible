@@ -1,4 +1,8 @@
 ---
+- name: Update apt package cache
+  apt:
+    update_cache: yes
+
 - name: Install Java 11 
   apt:
     name: openjdk-11-jdk
