@@ -1,14 +1,14 @@
 ---
-- name: Pull Wazuh Docker image
+- name: Pull Wazuh Manager Docker image
   docker_image:
-    name: wazuh/wazuh
-    tag: "v4.7.4"
+    name: wazuh/wazuh-manager
+    tag: "latest"
     source: pull
 
-- name: Create and start Wazuh Manager container
+- name: Run Wazuh Manager container
   docker_container:
     name: wazuh-manager
-    image: wazuh/wazuh:v4.7.4
+    image: wazuh/wazuh-manager:latest
     state: started
     restart_policy: always
     ports:
@@ -16,3 +16,32 @@
       - "1514:1514/udp"
     volumes:
       - /var/ossec/data:/var/ossec/data
+
+- name: Pull Wazuh Indexer Docker image
+  docker_image:
+    name: wazuh/wazuh-indexer
+    tag: "latest"
+    source: pull
+
+- name: Run Wazuh Indexer container
+  docker_container:
+    name: wazuh-indexer
+    image: wazuh/wazuh-indexer:latest
+    state: started
+    restart_policy: always
+
+- name: Pull Wazuh Dashboard Docker image
+  docker_image:
+    name: wazuh/wazuh-dashboard
+    tag: "latest"
+    source: pull
+
+- name: Run Wazuh Dashboard container
+  docker_container:
+    name: wazuh-dashboard
+    image: wazuh/wazuh-dashboard:latest
+    state: started
+    restart_policy: always
+    ports:
+      - "8000:80"
+
