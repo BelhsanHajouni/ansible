@@ -1,0 +1,6 @@
+- name: Deploy Wazuh Manager using Docker
+  hosts: wazuh_servers
+  become: yes
+
+  roles:
+    - wazuh
