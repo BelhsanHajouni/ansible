@@ -2,13 +2,13 @@
 - name: Pull Wazuh Docker image
   docker_image:
     name: wazuh/wazuh
-    # tag: latest
+    tag: "v4.2.0"
     source: pull
 
 - name: Create and start Wazuh Manager container
   docker_container:
     name: wazuh-manager
-    image: wazuh/wazuh
+    image: wazuh/wazuh:v4.2.0
     state: started
     restart_policy: always
     ports:
