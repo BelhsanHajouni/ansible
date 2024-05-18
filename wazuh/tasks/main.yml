@@ -2,7 +2,7 @@
 - name: Pull Wazuh Docker image
   docker_image:
     name: wazuh/wazuh
-    tag: latest
+    # tag: latest
     source: pull
 
 - name: Create and start Wazuh Manager container
