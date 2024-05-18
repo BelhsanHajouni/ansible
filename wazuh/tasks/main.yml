@@ -1,44 +1,46 @@
 ---
-- name: Pull Wazuh Manager Docker image
-  docker_image:
-    name: wazuh/wazuh-manager
-    source: pull
+    - name: Pull Wazuh Manager Docker image
+      docker_image:
+        name: wazuh/wazuh-manager
+        tag: "v4.7.4"
+        source: pull
 
-- name: Run Wazuh Manager container
-  docker_container:
-    name: wazuh-manager
-    image: wazuh/wazuh-manager
-    state: started
-    restart_policy: always
-    ports:
-      - "55000:55000"
-      - "1514:1514/udp"
-    volumes:
-      - /var/ossec/data:/var/ossec/data
+    - name: Run Wazuh Manager container
+      docker_container:
+        name: wazuh-manager
+        image: wazuh/wazuh-manager:v4.7.4
+        state: started
+        restart_policy: always
+        ports:
+          - "55000:55000"
+          - "1514:1514/udp"
+        volumes:
+          - /var/ossec/data:/var/ossec/data
 
-- name: Pull Wazuh Indexer Docker image
-  docker_image:
-    name: wazuh/wazuh-indexer
-    source: pull
+    - name: Pull Wazuh Indexer Docker image
+      docker_image:
+        name: wazuh/wazuh-indexer
+        tag: "v4.7.4"
+        source: pull
 
-- name: Run Wazuh Indexer container
-  docker_container:
-    name: wazuh-indexer
-    image: wazuh/wazuh-indexer
-    state: started
-    restart_policy: always
+    - name: Run Wazuh Indexer container
+      docker_container:
+        name: wazuh-indexer
+        image: wazuh/wazuh-indexer:v4.7.4
+        state: started
+        restart_policy: always
 
-- name: Pull Wazuh Dashboard Docker image
-  docker_image:
-    name: wazuh/wazuh-dashboard
-    source: pull
+    - name: Pull Wazuh Dashboard Docker image
+      docker_image:
+        name: wazuh/wazuh-dashboard
+        tag: "v4.7.4"
+        source: pull
 
-- name: Run Wazuh Dashboard container
-  docker_container:
-    name: wazuh-dashboard
-    image: wazuh/wazuh-dashboard
-    state: started
-    restart_policy: always
-    ports:
-      - "8000:80"
-
+    - name: Run Wazuh Dashboard container
+      docker_container:
+        name: wazuh-dashboard
+        image: wazuh/wazuh-dashboard:v4.7.4
+        state: started
+        restart_policy: always
+        ports:
+          - "8000:80"
