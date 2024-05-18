@@ -8,7 +8,7 @@
 - name: Create and start Wazuh Manager container
   docker_container:
     name: wazuh-manager
-    image: wazuh/wazuh:latest
+    image: wazuh/wazuh
     state: started
     restart_policy: always
     ports:
