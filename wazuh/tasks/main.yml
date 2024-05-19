@@ -2,13 +2,13 @@
     - name: Pull Wazuh Manager Docker image
       docker_image:
         name: wazuh/wazuh-manager
-        tag: "v4.7.4"
+        tag: "4.7.4"
         source: pull
 
     - name: Run Wazuh Manager container
       docker_container:
         name: wazuh-manager
-        image: wazuh/wazuh-manager:v4.7.4
+        image: wazuh/wazuh-manager:4.7.4
         state: started
         restart_policy: always
         ports:
@@ -20,26 +20,26 @@
     - name: Pull Wazuh Indexer Docker image
       docker_image:
         name: wazuh/wazuh-indexer
-        tag: "v4.7.4"
+        tag: "4.7.4"
         source: pull
 
     - name: Run Wazuh Indexer container
       docker_container:
         name: wazuh-indexer
-        image: wazuh/wazuh-indexer:v4.7.4
+        image: wazuh/wazuh-indexer:4.7.4
         state: started
         restart_policy: always
 
     - name: Pull Wazuh Dashboard Docker image
       docker_image:
         name: wazuh/wazuh-dashboard
-        tag: "v4.7.4"
+        tag: "4.7.4"
         source: pull
 
     - name: Run Wazuh Dashboard container
       docker_container:
         name: wazuh-dashboard
-        image: wazuh/wazuh-dashboard:v4.7.4
+        image: wazuh/wazuh-dashboard:4.7.4
         state: started
         restart_policy: always
         ports:
