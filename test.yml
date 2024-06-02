@@ -1,0 +1,18 @@
+---
+- name: Update APT and check Java version
+  hosts: all
+  vars_files:
+    - encrypted_vars.yml
+  tasks:
+    - name: Update APT
+      apt:
+        update_cache: yes
+
+    - name: Check Java version
+      command: java -version
+      register: java_version
+      ignore_errors: yes
+
+    - name: Print Java version
+      debug:
+        var: java_version

@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+        environment {
+        // Define the path to the temporary Vault password file
+        VAULT_PASSWORD_FILE = "${WORKSPACE}/.vault_pass.txt"
+    }
+
+    tools {
+        ansible 'Ansible'
+    }
+    stages {
+        stage('Git Checkout') {
+            steps {
+                echo 'Pulling ... '
+                git branch: 'main',
+                url: 'https://github.com/jasminemansouri/ansible'
+            }
+        }
+        stage('config IP @') {
+            steps {
+                // Retrieve the Vault password from Jenkins credentials store
+                withCredentials([string(credentialsId: 'ansible_vault_password', variable: 'VAULT_PASS')]) {
+                    script {
+                        // Write the Vault password to a temporary file
+                        writeFile file: VAULT_PASSWORD_FILE, text: VAULT_PASS
+
+                        // Run Ansible playbook for configuring VM IPs
+                        sh 'ansible-playbook -i hosts.ini test.yml --vault-password-file ${VAULT_PASSWORD_FILE}"'
+                    }
+            }
+        }
+       
+    }
+    post {
+        always {
+            // Ensure the temporary Vault password file is deleted after the job
+            sh "rm -f ${VAULT_PASSWORD_FILE}"
+        }
+    }
+}
