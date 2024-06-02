@@ -28,9 +28,10 @@ pipeline {
                         // Run Ansible playbook for configuring VM IPs
                         sh 'ansible-playbook -i hosts.ini test.yml --vault-password-file ${VAULT_PASSWORD_FILE}"'
                     }
+                }
             }
-        }
        
+        }
     }
     post {
         always {
