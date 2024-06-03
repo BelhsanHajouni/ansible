@@ -32,7 +32,7 @@ pipeline {
                         //sh 'rm -f vault_password.txt'
                     }
                 }
-            }
+            //}
        
         }
     }
