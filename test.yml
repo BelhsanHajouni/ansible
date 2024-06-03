@@ -1,8 +1,8 @@
 ---
 - name: Update APT and check Java version
   hosts: all
-  #vars_files:
-  #  - encrypted_vars.yml
+  vars_files:
+    - encrypted_vars.yml
   tasks:
     - name: Update APT
       apt:
