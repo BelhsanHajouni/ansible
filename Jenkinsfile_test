@@ -16,7 +16,7 @@ pipeline {
                 url: 'https://github.com/jasminemansouri/ansible'
             }
         }
-        stage('config IP @') {
+        stage('test') {
             steps {
                 // Retrieve the Vault password from Jenkins credentials store
                 withCredentials([string(credentialsId: 'ansible_vault_password', variable: 'VAULT_PASS')]) {
