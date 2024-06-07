@@ -25,6 +25,8 @@ pipeline {
                     writeFile file: 'vault-password.txt', text: env.VAULT_PASS
                     // Set appropriate permissions for the password file
                     sh 'chmod 600 vault-password.txt'
+                    echo "***************************************"
+                    sh ' cat vault-password.txt'
                 }
             }
         }
