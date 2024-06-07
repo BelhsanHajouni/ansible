@@ -10,11 +10,3 @@
       apt:
         update_cache: yes
 
-    - name: Check Java version
-      command: java -version
-      register: java_version
-      ignore_errors: yes
-
-    - name: Print Java version
-      debug:
-        var: java_version
