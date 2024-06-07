@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     // Run the Ansible playbook with the Vault password file
-                    sh 'sudo ansible-playbook -i hosts.ini test.yml --vault-password-file vault-password.txt'
+                    sh 'ansible-playbook -i hosts.ini test.yml --vault-password-file vault-password.txt'
                 }
             }
         }
