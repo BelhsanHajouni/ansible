@@ -22,11 +22,15 @@ pipeline {
             steps {
                 script {
                     // Write the Vault password to a file
-                    writeFile file: 'vault-password.txt', text: env.VAULT_PASS
+                    writeFile filePath: 'vault-password.txt', text: env.VAULT_PASS
                     // Set appropriate permissions for the password file
                     sh 'chmod 600 vault-password.txt'
                     echo "***************************************"
-                    sh ' cat vault-password.txt'
+                     // Use the cat command to read the file contents
+                    def fileContents = sh(script: "cat ${filePath}", returnStdout: true).trim()
+
+                    // Display the file contents in the Jenkins console
+                    echo "Contents of ${filePath}:\n${fileContents}"
                 }
             }
         }
