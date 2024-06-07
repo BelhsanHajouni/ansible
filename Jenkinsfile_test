@@ -27,7 +27,7 @@ pipeline {
                     script {
                         // Write the vault password to a temporary file
                          //writeFile file: 'vault_password.txt', text: env.VAULT_PASS
-                        sh 'echo ${env.VAULT_PASS}'
+                            echo "password: ${env.VAULT_PASS}"
 
                         // Run Ansible playbook for configuring VM IPs
                         //sh 'ansible-playbook -i hosts.ini test.yml --vault-password-file vault_password.txt'
