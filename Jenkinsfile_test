@@ -29,7 +29,8 @@ pipeline {
                          writeFile file: 'vault_password.txt', text: env.VAULT_PASS
 
                         // Run Ansible playbook for configuring VM IPs
-                        sh 'ansible-playbook -i hosts.ini test.yml --vault-password-file vault_password.txt'
+                        //sh 'ansible-playbook -i hosts.ini test.yml --vault-password-file vault_password.txt'
+                        sh 'ansible-playbook -i hosts.ini test.yml --vault-password-string ${VAULT_PASS}'
                           //sh 'ansible-playbook -i hosts_copy.ini test.yml'
 
                         // Clean up the temporary vault password file
