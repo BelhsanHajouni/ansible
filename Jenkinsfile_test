@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Run Ansible Playbook') {
             steps {
-                script {
+                sshagent([ssh_private_key]) {
                     // Run the Ansible playbook with the Vault password file
                     sh 'ansible-playbook -i hosts.ini test.yml --vault-password-file vault-password.txt'
                 }
