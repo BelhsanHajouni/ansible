@@ -18,6 +18,10 @@ pipeline {
         }
         stage('test') {
             steps {
+                 script {
+                        echo "Workspace: ${env.WORKSPACE}"
+                    }
+
                 // Retrieve the Vault password from Jenkins credentials store
                 withCredentials([string(credentialsId: 'ansible_vault_password', variable: 'VAULT_PASS')]) {
                     script {
