@@ -23,11 +23,7 @@ pipeline {
                 script {
                     // Write the Vault password to a file
                     writeFile file: 'vault-password.txt', text: env.VAULT_PASS
-                    // Set appropriate permissions for the password file
-                    sh 'chmod 600 vault-password.txt'
-                    echo "***************************************"
-                    def fileContent = readFile 'vault-password.txt'
-                    echo "File content: ${fileContent}"
+               
                 }
             }
         }
