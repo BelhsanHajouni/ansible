@@ -2,7 +2,7 @@
 - name: Update APT and check Java version
   hosts: workers
   vars_files:
-    - encrypted_vars.yml
+    - encrypted_master.yml
   vars:
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
   tasks:
