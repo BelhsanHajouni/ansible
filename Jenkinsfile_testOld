@@ -37,7 +37,7 @@ pipeline {
                         // """
                         //sh' ansible-playbook -i hosts.ini test.yml --private-key encrypted_master -vvv'
                         // Run Ansible playbook for configuring VM IPs
-                       sh 'ansible-playbook -i hosts.ini test.yml --vault-password-file vault_password.txt'
+                         sh 'ansible-playbook -i hosts.ini test.yml --vault-password-file vault_password.txt'
                         //sh 'ansible-playbook -i hosts.ini test.yml --vault-password-string env.VAULT_PASS'
                           //sh 'ansible-playbook -i hosts_copy.ini test.yml'
 
