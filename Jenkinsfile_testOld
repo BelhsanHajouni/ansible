@@ -32,10 +32,10 @@ pipeline {
                        //  writeFile file: 'vault_password.txt', text: env.VAULT_PASS
                         sh """ 
                             echo "${VAULT_PASS}" > vault_pass.txt
-                            ansible-vault decrypt --vault-password-file vault_pass.txt encrypted_master.yml
-                            chmod 600 encrypted_master.yml
+                            ansible-vault decrypt --vault-password-file vault_pass.txt encrypted_master
+                            chmod 600 encrypted_master
                         """
-                        sh' ansible-playbook -i hosts.ini test.yml --private-key encrypted_master.yml -vvv'
+                        sh' ansible-playbook -i hosts.ini test.yml --private-key encrypted_master -vvv'
                         // Run Ansible playbook for configuring VM IPs
                      //   sh 'ansible-playbook -i hosts.ini test.yml --vault-password-file vault_password.txt'
                         //sh 'ansible-playbook -i hosts.ini test.yml --vault-password-string env.VAULT_PASS'
