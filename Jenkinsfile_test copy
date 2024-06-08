@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+   environment {
+       VAULT_PASS = credentials('ansible_vault_password') // Use your credentials ID
+    }
+
+
+
+    tools {
+        ansible 'Ansible'
+    }
+    stages {
+        stage('Git Checkout') {
+            steps {
+                echo 'Pulling ... '
+                git branch: 'main',
+                url: 'https://github.com/jasminemansouri/ansible'
+            }
+        }
+        stage('Prepare') {
+            steps {
+                script {
+                    // Write the Vault password to a file
+                    writeFile file: 'vault-password.txt', text: env.VAULT_PASS
+               
+                }
+            }
+        }
+        stage('Run Ansible Playbook') {
+            steps {
+               //sshagent(['test_ssh']) {
+                script{
+                    // Run the Ansible playbook with the Vault password file
+                    sh 'ansible-playbook -i hosts.ini test.yml --vault-password-file vault-password.txt -vvv'
+                }
+            }
+        }
+
+    }
+post {
+        cleanup {
+            // Clean up the Vault password file after the job
+            sh 'rm -f vault-password.txt'
+        }
+    }
+}

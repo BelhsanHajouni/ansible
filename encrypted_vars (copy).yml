@@ -4,20 +4,20 @@ all:
       ansible_connection: ssh
       ansible_user: yasmine
       ansible_become_method: sudo
-      ansible_become_password: "yasmine"
+      ansible_become_password: yasmine
       ansible_ssh_user: root
-      ansible_ssh_pass: "belhsan"
+      ansible_ssh_pass: belhsan
     worker1:
       ansible_connection: ssh
       ansible_user: terra
       ansible_become_method: sudo
-      ansible_become_password: "terraform"
+      ansible_become_password: terraform
       ansible_ssh_user: root
-      ansible_ssh_pass: "belhsan"
+      ansible_ssh_pass: belhsan
     worker2:
       ansible_connection: ssh
       ansible_user: terra
       ansible_become_method: sudo
-      ansible_become_password: "terraform"
+      ansible_become_password: terraform
       ansible_ssh_user: root
-      ansible_ssh_pass: "belhsan"
+      ansible_ssh_pass: belhsan
