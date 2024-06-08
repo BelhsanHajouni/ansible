@@ -1,6 +1,6 @@
 ---
 - name: Update APT and check Java version
-  hosts: workers
+  hosts: all
   vars_files:
     - encrypted_host.yml
   vars:
