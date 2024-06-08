@@ -20,10 +20,10 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 withCredentials([string(credentialsId: 'ansible-vault-password', variable: 'VAULT_PASSWORD')]) {
-                    sh '
+                    sh '''
                     echo $VAULT_PASSWORD > vault_pass.txt
                     ansible-playbook -i hosts.ini test.yml --vault-password-file vault_pass.txt
-                    '
+                    '''
 
                     // sh 'ansible-playbook -i hosts_copy.ini test.yml '
                 }
