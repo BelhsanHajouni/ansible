@@ -1,4 +1,3 @@
-
 all:
   hosts:
     master:
@@ -6,12 +5,19 @@ all:
       ansible_user: yasmine
       ansible_become_method: sudo
       ansible_become_password: "yasmine"
-      ansible_ssh_user: yasmine
-      ansible_ssh_pass: "yasmine"
-    workers:
+      ansible_ssh_user: root
+      ansible_ssh_pass: "belhsan"
+    worker1:
       ansible_connection: ssh
       ansible_user: terra
       ansible_become_method: sudo
       ansible_become_password: "terraform"
-      ansible_ssh_user: terra
-      ansible_ssh_pass: "terraform"
+      ansible_ssh_user: root
+      ansible_ssh_pass: "belhsan"
+    worker2:
+      ansible_connection: ssh
+      ansible_user: terra
+      ansible_become_method: sudo
+      ansible_become_password: "terraform"
+      ansible_ssh_user: root
+      ansible_ssh_pass: "belhsan"
