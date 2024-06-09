@@ -23,7 +23,7 @@ pipeline {
              
                     sh '''
                     echo $VAULT_PASSWORD > vault_pass.txt
-                    cd wazuh_agents/playbooks && ansible-playbook -i hosts.ini wazuh-agent.yml --vault-password-file vault_pass.txt
+                    ansible-playbook -i wazuh_agents/playbooks/hosts.ini wazuh_agents/playbooks/wazuh-agent.yml --vault-password-file vault_pass.txt
                     '''
                     
 
