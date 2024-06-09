@@ -20,12 +20,12 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 withCredentials([string(credentialsId: 'ansible-vault-password', variable: 'VAULT_PASSWORD')]) {
-              
+                 dir(test/playbooks/){
                     sh '''
                     echo $VAULT_PASSWORD > vault_pass.txt
-                    ansible-playbook -i test/playbooks/hosts.ini test/playbooks/wazuh-agent.yml --vault-password-file vault_pass.txt
+                    ansible-playbook -i hosts.ini wazuh-agent.yml --vault-password-file vault_pass.txt
                     '''
-
+                    }
 
                 }
             }
