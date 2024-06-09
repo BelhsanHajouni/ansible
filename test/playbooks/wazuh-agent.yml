@@ -1,0 +1,18 @@
+---
+- hosts: workers
+  become: yes
+  become_user: root
+  roles:
+    - ../roles/wazuh/ansible-wazuh-agent
+  vars_files:
+    - encrypted_vars.yml
+  vars:
+    wazuh_managers:
+      - address: 10.2.1.32
+        port: 1514
+        protocol: tcp
+        api_port: 55000
+        api_proto: 'http'
+        api_user: ansible
+        max_retries: 5
+        retry_interval: 5
