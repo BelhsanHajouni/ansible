@@ -20,7 +20,7 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 withCredentials([string(credentialsId: 'ansible-vault-password', variable: 'VAULT_PASSWORD')]) {
-             dir('wazuh-ansible/playbooks') {
+             dir('wazuh-ansible/playbooks/') {
 
                     sh '''
                     echo $VAULT_PASSWORD > vault_pass.txt
