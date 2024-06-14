@@ -1,4 +1,4 @@
-- name: Install Docker
+- name: Install Docker & JDK 11
   hosts: all
   become: yes
   vars:
@@ -7,3 +7,4 @@
 
   roles:
     - docker
+    - openjdk11
