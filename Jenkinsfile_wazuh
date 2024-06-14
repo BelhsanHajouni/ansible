@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    
     environment {
         VAULT_PASSWORD = credentials('ansible-vault-password')
     }
@@ -8,7 +7,6 @@ pipeline {
     tools {
         ansible 'Ansible'
     }
-
     stages {
         stage('Git Checkout') {
             steps {
@@ -20,16 +18,12 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 withCredentials([string(credentialsId: 'ansible-vault-password', variable: 'VAULT_PASSWORD')]) {
-             
                     sh '''
                     echo $VAULT_PASSWORD > vault_pass.txt
                     ansible-playbook -i wazuh_agents/playbooks/hosts.ini wazuh_agents/playbooks/wazuh-agent.yml --vault-password-file vault_pass.txt
                     '''
-                    
-
                 }
             }
         }
-
     }
 }
