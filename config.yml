@@ -1,15 +1,15 @@
 - name: Configure VM IPs
   hosts: vms
   become: yes
+  serial: 1
   vars:
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
   tasks:
     - name: Set static IP address using shell
       ansible.builtin.shell: |
         nmcli con mod 'Connexion filaire 1' ipv4.addresses {{ host_ip }}/24 ipv4.gateway {{ gateway }} ipv4.method manual
-      vars:
-        host_ip: "{{ hostvars[inventory_hostname]['host_ip'] }}"
-        gateway: "{{ hostvars[inventory_hostname]['gateway'] }}"
+      notify: Restart network interface
+  handlers:
     - name: Restart network interface
       ansible.builtin.service:
         name: systemd-networkd
