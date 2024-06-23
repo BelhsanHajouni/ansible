@@ -2,6 +2,8 @@
   hosts: vms
   become: yes
   serial: 1
+  vars_files:
+    - encrypted_vars.yml
   vars:
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
   tasks:
